@@ -39,5 +39,8 @@ class SearchTableViewCell: UITableViewCell {
     
     @IBAction func addbutton(_ sender: Any) {
         cellDelegate?.onClickCell(index: (index?.row)!)
+        
+
+
     }
 }

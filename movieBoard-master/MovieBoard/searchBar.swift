@@ -22,7 +22,6 @@ extension SearchMovie: UISearchBarDelegate {
                 self.searchResult = results
                 self.tableView.reloadData()
                 self.tableView.setContentOffset(CGPoint.zero, animated: false)
-                print(self.searchResult[0].title)
             }
             if !errorMessage.isEmpty { print("Search error: " + errorMessage) }
         }
