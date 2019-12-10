@@ -36,7 +36,7 @@ struct searchResult: Decodable {
 }
 
 
-class movieList {
+class movieList: Codable{
     var title: String
     var link: String
     var image: String
@@ -55,6 +55,14 @@ class movieList {
         self.director = director
         self.actor = actor
         self.userRating = userRating
+    }
+        func saveItem(){
+            DataManager.save(self, with: title)
+            
+    }
+        func deletItem(){
+            DataManager.delet(title)
+            
     }
     
 }
