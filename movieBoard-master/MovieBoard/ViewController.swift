@@ -13,8 +13,6 @@ var mymovielist:[movieList] = []
 
 class ViewController :UICollectionViewController {
 
-
-    
 //    @IBAction func reload(_ sender: Any) {
 //        self.collectionView.reloadData()}
 // manual reload button
@@ -51,7 +49,6 @@ class ViewController :UICollectionViewController {
 
         mymovielist = [movieList]()
         mymovielist = DataManager.loadAll(movieList.self)
-        print(mymovielist)
 
       
         super.viewDidLoad()
@@ -92,6 +89,12 @@ class ViewController :UICollectionViewController {
         
         }
     
+//    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let vc = storyboard?.instantiateViewController(withIdentifier: "EditMovieViewController") as? EditMovieViewController
+//        vc?.ttl = mymovielist[indexPath.row].title
+//        self.navigationController?.pushViewController(vc!, animated: true)
+//    }
+    
     func str2Img(imageStr: String) -> UIImage? {
         if !imageStr.isEmpty {
             let imageUrl = URL(string: imageStr)
@@ -110,3 +113,17 @@ class ViewController :UICollectionViewController {
     }
     
 
+
+
+//extension ViewController: UICollectionViewDelegateFlowLayout {
+//
+//  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//    let padding: CGFloat = 25
+//    let collectionCellSize = collectionView.frame.size.width - padding
+//
+//  return CGSize(width: collectionCellSize/2, height: collectionCellSize/2)
+//
+//   }
+//
+//}
