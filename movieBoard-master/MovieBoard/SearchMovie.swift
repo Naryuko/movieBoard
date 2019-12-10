@@ -85,29 +85,12 @@ extension SearchMovie: UITableViewDelegate, UITableViewDataSource {
 
 
 extension SearchMovie: (SearchTabelViewprotocol){
-    
     func onClickCell(index: Int) {
         print(searchResult[index].title + " is clicked")
-
-        for iteminlist in mymovielist{
-            if iteminlist.title == searchResult[index].title {
-            alert(title: "Alert", message: "It's already in the list", text: "c")
-            }
-        }
         mymovielist.append(searchResult[index])
-        
     }
     
-    func alert(title:String, message: String, text: String){
-    let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-    let okButton = UIAlertAction(title: "ok", style: UIAlertAction.Style.cancel, handler: nil)
-    alert.addAction(okButton)
-    return self.present(alert, animated:true, completion: nil)}
     
-    }
-    
-
-
     
 //    let newitem = searchResult[index]
 //        newitem.saveItem()
@@ -124,6 +107,7 @@ extension SearchMovie: (SearchTabelViewprotocol){
         
 //        savedlist.setProperty(_property: searchResult[index].title)
 //        print(savedlist.getproperty)
+    }
 
     //    func configureText(for cell: UITableViewCell, with item: movieList) {
     //        if let label1 = cell.viewWithTag(1001) as? UILabel {
