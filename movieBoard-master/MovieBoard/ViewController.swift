@@ -9,6 +9,7 @@
 import UIKit
 
 var mymovielist:[movieList] = []
+var wanttoseelist:[movieList] = []
 
 
 class ViewController :UICollectionViewController {
@@ -47,6 +48,9 @@ class ViewController :UICollectionViewController {
         for i in mymovielist{
             DataManager.save(i, with: i.title)
         }
+        for i in wanttoseelist{
+            DataManager.save(i, with: i.title)
+        }
         // After add list and you back, reload(refresh) main page And save the list
     }
     override func viewDidLoad() {
@@ -59,6 +63,9 @@ class ViewController :UICollectionViewController {
 
         mymovielist = [movieList]()
         mymovielist = DataManager.loadAll(movieList.self)
+        
+        wanttoseelist = [movieList]()
+        wanttoseelist = DataManager.loadAll(movieList.self)
         
         // 콜랙션뷰 디폴트 샘플이미지
         if mymovielist.count == 0 {
