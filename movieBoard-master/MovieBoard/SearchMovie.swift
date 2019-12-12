@@ -88,6 +88,7 @@ extension SearchMovie: (SearchTabelViewprotocol){
     
     func onClickCell(index: Int) {
         print(searchResult[index].title + " is clicked")
+        print(searchResult[index].image)
         var find:Bool = false
         for iteminlist in mymovielist{
             if iteminlist.title == searchResult[index].title {

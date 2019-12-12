@@ -19,7 +19,16 @@ class ViewController :UICollectionViewController {
     
     
     @IBAction func testbutton(_ sender: Any) {
-//        DataManager.save(mymovi
+        
+        for i in mymovielist{
+            DataManager.delet(i.title)}
+        
+        mymovielist = []
+        
+        for i in mymovielist{
+            print(i.title)
+            DataManager.save(i, with: i.title)}
+        print("Test")
     }
     @IBAction func goSearchMovie(_ sender: Any) {
         let storyBoard = UIStoryboard(name: "SearchMovie", bundle: nil)
@@ -34,6 +43,7 @@ class ViewController :UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
             collectionView.reloadData()
+
         for i in mymovielist{
             DataManager.save(i, with: i.title)
         }
@@ -49,7 +59,14 @@ class ViewController :UICollectionViewController {
 
         mymovielist = [movieList]()
         mymovielist = DataManager.loadAll(movieList.self)
-
+        
+        // 콜랙션뷰 디폴트 샘플이미지
+        if mymovielist.count == 0 {
+            let sample1 = movieList(title: "샘플1", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플")
+            let sample2 = movieList(title: "샘플2", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플")
+            let sample3 = movieList(title: "샘플3", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플")
+            mymovielist = [sample1, sample2, sample3]
+        }
       
         super.viewDidLoad()
          self.collectionView.reloadData()
