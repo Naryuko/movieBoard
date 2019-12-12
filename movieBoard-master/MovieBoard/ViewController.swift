@@ -10,7 +10,7 @@ import UIKit
 
 var mymovielist:[movieList] = []
 var wanttoseelist:[movieList] = []
-
+var sample:[movieList] = []
 
 class ViewController :UICollectionViewController {
 
@@ -72,7 +72,8 @@ class ViewController :UICollectionViewController {
             let sample1 = movieList(title: "샘플1", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플")
             let sample2 = movieList(title: "샘플2", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플")
             let sample3 = movieList(title: "샘플3", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플")
-            mymovielist = [sample1, sample2, sample3]
+            
+            sample = [sample1, sample2, sample3]
         }
       
         super.viewDidLoad()
@@ -96,6 +97,9 @@ class ViewController :UICollectionViewController {
 
 
         override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+            if mymovielist.count == 0 {
+                return sample.count
+            }
             return mymovielist.count
 // number of collection cell = mymovielist items
         }
@@ -104,6 +108,10 @@ class ViewController :UICollectionViewController {
         override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Mycell", for: indexPath) as? CollectionViewCell
+            if mymovielist.count == 0 {
+            cell?.cellimage.image = str2Img(imageStr: sample[indexPath.row].image)
+            return cell!
+            }
             cell?.cellimage.image = str2Img(imageStr: mymovielist[indexPath.row].image)
 //            cell?.cellimage.image = str2Img(imageStr: mymovielist[indexPath.row].image)
 //            cell?.label1.text = mymovielist[indexPath.row].title
