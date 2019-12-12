@@ -70,9 +70,9 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLq-Jz-mtY">
-                                                    <rect key="frame" x="356" y="168" width="30" height="30"/>
+                                                    <rect key="frame" x="349" y="168" width="44" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Add"/>
+                                                    <state key="normal" title="봤어요!"/>
                                                     <connections>
                                                         <action selector="addbutton:" destination="Qcu-bg-zes" eventType="touchUpInside" id="Ecm-YO-sWf"/>
                                                     </connections>

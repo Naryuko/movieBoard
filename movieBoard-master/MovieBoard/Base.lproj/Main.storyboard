@@ -82,12 +82,12 @@
                     </collectionView>
                     <navigationItem key="navigationItem" id="u0Q-Pd-H6R">
                         <rightBarButtonItems>
-                            <barButtonItem systemItem="add" id="yKK-07-0nq">
+                            <barButtonItem title="검색" id="yKK-07-0nq">
                                 <connections>
                                     <action selector="goSearchMovie:" destination="cDc-wa-MPG" id="r63-t9-U88"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Item" id="twM-Od-sct">
+                            <barButtonItem title="Test" id="twM-Od-sct">
                                 <connections>
                                     <action selector="testbutton:" destination="cDc-wa-MPG" id="M49-Mw-skj"/>
                                 </connections>

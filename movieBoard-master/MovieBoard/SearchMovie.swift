@@ -88,15 +88,23 @@ extension SearchMovie: (SearchTabelViewprotocol){
     
     func onClickCell(index: Int) {
         print(searchResult[index].title + " is clicked")
-
+        var find:Bool = false
         for iteminlist in mymovielist{
             if iteminlist.title == searchResult[index].title {
-            alert(title: "Alert", message: "It's already in the list", text: "c")
+                find = true
+                break
             }
         }
-        mymovielist.append(searchResult[index])
+            if find {
+                alert(title: "추가 실패!", message: "이미 본 영화 목록에 추가되어 있어요!", text: "c")
+            }
+            else{
+                mymovielist.append(searchResult[index])
+                 alert(title: "목록에 추가 성공!", message: "본영화 목록에 성공적으로 추가 되었어요!", text: "c")
+            }
+        }
+
         
-    }
     
     func alert(title:String, message: String, text: String){
     let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
