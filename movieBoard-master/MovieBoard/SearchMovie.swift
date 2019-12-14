@@ -50,6 +50,17 @@ class SearchMovie: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailMovie" {
+            if let addItemViewController = segue.destination as? detailMovie {
+                if let cell = sender as? UITableViewCell,
+                    let indexPath = tableView.indexPath(for: cell) {
+                    let item = searchResult[indexPath.row]
+                    addItemViewController.itemToEdit = item
+                }
+            }
+        }
+    }
     
 
 }
@@ -68,11 +79,8 @@ extension SearchMovie: UITableViewDelegate, UITableViewDataSource {
         
         cell?.label1.text = item.title
         cell?.label2.text = item.subtitle
-        cell?.label3.text = "pubDate: " + item.pubDate
-        cell?.label4.text = "director: " + item.director
-        cell?.label5.text = "actor: " + item.actor
-        cell?.label6.text = "user rating: " + item.userRating
-        cell?.label7.text = item.link
+        cell?.label4.text = "감독 : " + item.director
+        cell?.label5.text = "배우 : " + item.actor
         cell?.imagelabel.image = str2Img(imageStr: item.image)
 //        configureText(for: cell, with: item)
 //        configureImage(for: cell, with: item)
