@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0417679F23A4D33C0037795B /* detailMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0417679E23A4D33C0037795B /* detailMovie.swift */; };
 		044520C8238A6ACD004E8CEF /* searchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044520C7238A6ACD004E8CEF /* searchBar.swift */; };
 		044520CA238A7877004E8CEF /* naverAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044520C9238A7877004E8CEF /* naverAPI.swift */; };
 		045E856C2386DA6D00D77F18 /* SearchMovie.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 045E856B2386DA6D00D77F18 /* SearchMovie.storyboard */; };
@@ -46,6 +47,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0417679E23A4D33C0037795B /* detailMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailMovie.swift; sourceTree = "<group>"; };
 		044520C7238A6ACD004E8CEF /* searchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchBar.swift; sourceTree = "<group>"; };
 		044520C9238A7877004E8CEF /* naverAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = naverAPI.swift; sourceTree = "<group>"; };
 		045E856B2386DA6D00D77F18 /* SearchMovie.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SearchMovie.storyboard; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				04CF3B582379B66100548FE6 /* LaunchScreen.storyboard */,
 				04CF3B5B2379B66100548FE6 /* Info.plist */,
 				045E856D2386DA7C00D77F18 /* SearchMovie.swift */,
+				0417679E23A4D33C0037795B /* detailMovie.swift */,
 				044520C7238A6ACD004E8CEF /* searchBar.swift */,
 				04EC949B23805A30007B7D43 /* Jason.swift */,
 				044520C9238A7877004E8CEF /* naverAPI.swift */,
@@ -300,6 +303,7 @@
 				EBC986BD239E976F00113972 /* CollectionViewCell.swift in Sources */,
 				04CF3B4E2379B66000548FE6 /* AppDelegate.swift in Sources */,
 				045E856E2386DA7C00D77F18 /* SearchMovie.swift in Sources */,
+				0417679F23A4D33C0037795B /* detailMovie.swift in Sources */,
 				04CF3B502379B66000548FE6 /* SceneDelegate.swift in Sources */,
 				EBC986B3239E181C00113972 /* SearchTableViewCell.swift in Sources */,
 				EBBC5B0E239FC3B9008ADD19 /* EditMovieViewController.swift in Sources */,

@@ -22,7 +22,9 @@ extension SearchMovie: UISearchBarDelegate {
                 self.searchResult = results
                 self.tableView.reloadData()
                 self.tableView.setContentOffset(CGPoint.zero, animated: false)
-                print(self.searchResult[0].title)
+                if results.count == 0 {
+                    self.alert(title: "No result", message: "입력하신 제목으로 검색된 영화가 없습니다.", text: "c")
+                }
             }
             if !errorMessage.isEmpty { print("Search error: " + errorMessage) }
         }

@@ -50,6 +50,17 @@ class SearchMovie: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailMovie" {
+            if let addItemViewController = segue.destination as? detailMovie {
+                if let cell = sender as? UITableViewCell,
+                    let indexPath = tableView.indexPath(for: cell) {
+                    let item = searchResult[indexPath.row]
+                    addItemViewController.itemToEdit = item
+                }
+            }
+        }
+    }
     
 
 }
@@ -68,11 +79,8 @@ extension SearchMovie: UITableViewDelegate, UITableViewDataSource {
         
         cell?.label1.text = item.title
         cell?.label2.text = item.subtitle
-        cell?.label3.text = "pubDate: " + item.pubDate
-        cell?.label4.text = "director: " + item.director
-        cell?.label5.text = "actor: " + item.actor
-        cell?.label6.text = "user rating: " + item.userRating
-        cell?.label7.text = item.link
+        cell?.label4.text = "감독 : " + item.director
+        cell?.label5.text = "배우 : " + item.actor
         cell?.imagelabel.image = str2Img(imageStr: item.image)
 //        configureText(for: cell, with: item)
 //        configureImage(for: cell, with: item)
@@ -88,7 +96,6 @@ extension SearchMovie: (SearchTabelViewprotocol){
     
     func onClickCell(index: Int) {
         print(searchResult[index].title + " is clicked")
-        print(searchResult[index].image)
         var find:Bool = false
         for iteminlist in mymovielist{
             if iteminlist.title == searchResult[index].title {
@@ -104,25 +111,24 @@ extension SearchMovie: (SearchTabelViewprotocol){
                  alert(title: "목록에 추가 성공!", message: "본영화 목록에 성공적으로 추가 되었어요!", text: "c")
             }
         }
+
     func onClickWantToSee(index: Int) {
-        print(searchResult[index].title + " is clicked")
-        var find:Bool = false
-        for iteminlist in wanttoseelist {
-            if iteminlist.title == searchResult[index].title {
-                find = true
-                break
-            }
+    print(searchResult[index].title + " is clicked")
+    var find:Bool = false
+    for iteminlist in wanttoseelist {
+        if iteminlist.title == searchResult[index].title {
+            find = true
+            break
         }
-            if find {
-                alert(title: "추가 실패!", message: "이미 보고싶은 영화 목록에 추가되어 있어요!", text: "c")
-            }
-            else{
-                wanttoseelist.append(searchResult[index])
-                 alert(title: "목록에 추가 성공!", message: "보고싶은 영화 목록에 성공적으로 추가 되었어요!", text: "c")
-            }
+    }
+        if find {
+            alert(title: "추가 실패!", message: "이미 보고싶은 영화 목록에 추가되어 있어요!", text: "c")
         }
-    
-        
+        else{
+            wanttoseelist.append(searchResult[index])
+             alert(title: "목록에 추가 성공!", message: "보고싶은 영화 목록에 성공적으로 추가 되었어요!", text: "c")
+        }
+    }
     
     func alert(title:String, message: String, text: String){
     let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)

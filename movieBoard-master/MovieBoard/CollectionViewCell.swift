@@ -8,7 +8,24 @@
 
 import UIKit
 
+protocol CollectionViewCellDelegate: class{
+    func delete(cell: CollectionViewCell)
+}
+
 class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cellimage: UIImageView!
+    @IBOutlet weak var deleteButtonBackground: UIVisualEffectView!
+    weak var delegate: CollectionViewCellDelegate?
     
+
+    var isEditing: Bool = false {
+        didSet {
+            deleteButtonBackground.isHidden = !isEditing
+            
+        }
+    }
+    
+    @IBAction func deleteButtonDidTap(_ sender: Any) {
+        delegate?.delete(cell: self)
+    }
 }
