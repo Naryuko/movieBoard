@@ -88,7 +88,6 @@ extension SearchMovie: (SearchTabelViewprotocol){
     
     func onClickCell(index: Int) {
         print(searchResult[index].title + " is clicked")
-        print(searchResult[index].image)
         var find:Bool = false
         for iteminlist in mymovielist{
             if iteminlist.title == searchResult[index].title {
@@ -104,24 +103,7 @@ extension SearchMovie: (SearchTabelViewprotocol){
                  alert(title: "목록에 추가 성공!", message: "본영화 목록에 성공적으로 추가 되었어요!", text: "c")
             }
         }
-    func onClickWantToSee(index: Int) {
-        print(searchResult[index].title + " is clicked")
-        var find:Bool = false
-        for iteminlist in wanttoseelist {
-            if iteminlist.title == searchResult[index].title {
-                find = true
-                break
-            }
-        }
-            if find {
-                alert(title: "추가 실패!", message: "이미 보고싶은 영화 목록에 추가되어 있어요!", text: "c")
-            }
-            else{
-                wanttoseelist.append(searchResult[index])
-                 alert(title: "목록에 추가 성공!", message: "보고싶은 영화 목록에 성공적으로 추가 되었어요!", text: "c")
-            }
-        }
-    
+
         
     
     func alert(title:String, message: String, text: String){

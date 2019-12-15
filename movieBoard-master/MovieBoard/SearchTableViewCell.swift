@@ -11,7 +11,6 @@ import UIKit
 protocol SearchTabelViewprotocol {
     
     func onClickCell(index: Int)
-    func onClickWantToSee(index: Int)
 }
 
 class SearchTableViewCell: UITableViewCell {
@@ -44,7 +43,6 @@ class SearchTableViewCell: UITableViewCell {
 
 
     }
-    @IBAction func addwanttosee(_ sender: Any) {
-        cellDelegate?.onClickWantToSee(index: (index?.row)!)
-    }
+    
+    
 }
