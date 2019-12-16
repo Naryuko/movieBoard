@@ -46,18 +46,7 @@ class ViewController :UICollectionViewController {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-            collectionView.reloadData()
 
-        for i in mymovielist{
-            DataManager.save(i, with: i.title)
-        }
-        for i in wanttoseelist{
-            DataManager.save(i, with: i.title)
-        }
-        // After add list and you back, reload(refresh) main page And save the list
-    }
     override func viewDidLoad() {
 
 //    var testitems = ["a","b","c"] // This is the test item
@@ -65,7 +54,9 @@ class ViewController :UICollectionViewController {
 //        mymovielistItem.saveItem()
 //        print(mymovielistItem.)
         
-
+        
+         mymovielist = [movieList]()
+         mymovielist = DataManager.loadAll(movieList.self)
         
         wanttoseelist = [movieList]()
         wanttoseelist = DataManager.loadAll(movieList.self)
@@ -79,12 +70,10 @@ class ViewController :UICollectionViewController {
 
             let sample = [sample1, sample2, sample3]
           
-
+        print("viewDidload")
       
         super.viewDidLoad()
-        
-        mymovielist = [movieList]()
-        mymovielist = DataManager.loadAll(movieList.self)
+ 
         
 //         self.collectionView.reloadData()
         navigationController?.navigationBar.prefersLargeTitles = true
@@ -97,6 +86,25 @@ class ViewController :UICollectionViewController {
         }
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        for i in mymovielist{
+            DataManager.save(i, with: i.title)
+        }
+        for i in wanttoseelist{
+            DataManager.save(i, with: i.title)
+            
+            
+
+
+        }
+        // After add list and you back, reload(refresh) main page And save the list
+        self.collectionView.reloadData()
+        print("reloaded")
+    }
+    
 //    func loadData(){
 //        mymovielist = [MyMovieListItem]()
 //        mymovielist = DataManager.loadAll(MyMovieListItem.self) //.sorted

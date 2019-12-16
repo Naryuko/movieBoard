@@ -25,7 +25,6 @@
 		EBBC5B0E239FC3B9008ADD19 /* EditMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBC5B0D239FC3B9008ADD19 /* EditMovieViewController.swift */; };
 		EBC986B3239E181C00113972 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC986B2239E181C00113972 /* SearchTableViewCell.swift */; };
 		EBC986BD239E976F00113972 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC986BC239E976F00113972 /* CollectionViewCell.swift */; };
-		EBC986BF239F654800113972 /* MyMovieListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC986BE239F654800113972 /* MyMovieListItem.swift */; };
 		EBC986C2239F6E2900113972 /* DataManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC986C0239F65DC00113972 /* DataManger.swift */; };
 		EBC986C4239F6E3A00113972 /* DataManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC986C3239F6E3A00113972 /* DataManger.swift */; };
 /* End PBXBuildFile section */
@@ -72,7 +71,6 @@
 		EBBC5B0D239FC3B9008ADD19 /* EditMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMovieViewController.swift; sourceTree = "<group>"; };
 		EBC986B2239E181C00113972 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		EBC986BC239E976F00113972 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
-		EBC986BE239F654800113972 /* MyMovieListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMovieListItem.swift; sourceTree = "<group>"; };
 		EBC986C0239F65DC00113972 /* DataManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManger.swift; sourceTree = "<group>"; };
 		EBC986C3239F6E3A00113972 /* DataManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -141,7 +139,6 @@
 				044520C9238A7877004E8CEF /* naverAPI.swift */,
 				EBC986B2239E181C00113972 /* SearchTableViewCell.swift */,
 				EBC986BC239E976F00113972 /* CollectionViewCell.swift */,
-				EBC986BE239F654800113972 /* MyMovieListItem.swift */,
 				EBC986C3239F6E3A00113972 /* DataManger.swift */,
 				04CF3B632379B66200548FE6 /* MovieBoardTests */,
 			);
@@ -301,7 +298,6 @@
 			files = (
 				EBC986C4239F6E3A00113972 /* DataManger.swift in Sources */,
 				04CF3B522379B66000548FE6 /* ViewController.swift in Sources */,
-				EBC986BF239F654800113972 /* MyMovieListItem.swift in Sources */,
 				044520CA238A7877004E8CEF /* naverAPI.swift in Sources */,
 				EBC986BD239E976F00113972 /* CollectionViewCell.swift in Sources */,
 				04CF3B4E2379B66000548FE6 /* AppDelegate.swift in Sources */,
