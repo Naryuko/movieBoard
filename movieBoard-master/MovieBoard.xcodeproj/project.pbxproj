@@ -21,6 +21,7 @@
 		04CF3B652379B66200548FE6 /* MovieBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CF3B642379B66200548FE6 /* MovieBoardTests.swift */; };
 		04CF3B702379B66200548FE6 /* MovieBoardUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CF3B6F2379B66200548FE6 /* MovieBoardUITests.swift */; };
 		04EC949C23805A30007B7D43 /* Jason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EC949B23805A30007B7D43 /* Jason.swift */; };
+		EBB01A6F23A6AE54000F9246 /* PinterestLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB01A6E23A6AE54000F9246 /* PinterestLayout.swift */; };
 		EBBC5B0E239FC3B9008ADD19 /* EditMovieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBC5B0D239FC3B9008ADD19 /* EditMovieViewController.swift */; };
 		EBC986B3239E181C00113972 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC986B2239E181C00113972 /* SearchTableViewCell.swift */; };
 		EBC986BD239E976F00113972 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC986BC239E976F00113972 /* CollectionViewCell.swift */; };
@@ -67,6 +68,7 @@
 		04CF3B6F2379B66200548FE6 /* MovieBoardUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieBoardUITests.swift; sourceTree = "<group>"; };
 		04CF3B712379B66200548FE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04EC949B23805A30007B7D43 /* Jason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jason.swift; sourceTree = "<group>"; };
+		EBB01A6E23A6AE54000F9246 /* PinterestLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinterestLayout.swift; sourceTree = "<group>"; };
 		EBBC5B0D239FC3B9008ADD19 /* EditMovieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMovieViewController.swift; sourceTree = "<group>"; };
 		EBC986B2239E181C00113972 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		EBC986BC239E976F00113972 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				04CF3B4D2379B66000548FE6 /* AppDelegate.swift */,
 				04CF3B4F2379B66000548FE6 /* SceneDelegate.swift */,
 				04CF3B532379B66000548FE6 /* Main.storyboard */,
+				EBB01A6E23A6AE54000F9246 /* PinterestLayout.swift */,
 				04CF3B512379B66000548FE6 /* ViewController.swift */,
 				EBBC5B0D239FC3B9008ADD19 /* EditMovieViewController.swift */,
 				04CF3B562379B66100548FE6 /* Assets.xcassets */,
@@ -306,6 +309,7 @@
 				0417679F23A4D33C0037795B /* detailMovie.swift in Sources */,
 				04CF3B502379B66000548FE6 /* SceneDelegate.swift in Sources */,
 				EBC986B3239E181C00113972 /* SearchTableViewCell.swift in Sources */,
+				EBB01A6F23A6AE54000F9246 /* PinterestLayout.swift in Sources */,
 				EBBC5B0E239FC3B9008ADD19 /* EditMovieViewController.swift in Sources */,
 				04EC949C23805A30007B7D43 /* Jason.swift in Sources */,
 				044520C8238A6ACD004E8CEF /* searchBar.swift in Sources */,

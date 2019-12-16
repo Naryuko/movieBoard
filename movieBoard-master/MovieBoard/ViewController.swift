@@ -12,6 +12,8 @@ var mymovielist:[movieList] = []
 var wanttoseelist:[movieList] = []
 var sample:[movieList] = []
 
+
+
 class ViewController :UICollectionViewController {
 
 //    @IBAction func reload(_ sender: Any) {
@@ -21,14 +23,16 @@ class ViewController :UICollectionViewController {
     
     @IBAction func testbutton(_ sender: Any) {
 
-        for i in mymovielist{
-            DataManager.delet(i.title)}
-        
-        mymovielist = []
-        
-        for i in mymovielist{
-            print(i.title)
-            DataManager.save(i, with: i.title)}
+//        for i in mymovielist{
+//            DataManager.delet(i.title)}
+//
+//        mymovielist = []
+//
+//        for i in mymovielist{
+//            print(i.title)
+//            DataManager.save(i, with: i.title)}
+        print(mymovielist.count)
+        print(sample.count)
         print("Test")
     }
     @IBOutlet weak var searchBarButton: UIBarButtonItem!
@@ -62,30 +66,35 @@ class ViewController :UICollectionViewController {
 //        print(mymovielistItem.)
         
 
-        mymovielist = [movieList]()
-        mymovielist = DataManager.loadAll(movieList.self)
         
         wanttoseelist = [movieList]()
         wanttoseelist = DataManager.loadAll(movieList.self)
         
         // 콜랙션뷰 디폴트 샘플이미지
-            if mymovielist.count == 0 {
+
                 let sample1 = movieList(title: "샘플1", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플")
                 let sample2 = movieList(title: "샘플2", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플")
                 let sample3 = movieList(title: "샘플3", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플")
                 
-                sample = [sample1, sample2, sample3]
-            }
+
+            let sample = [sample1, sample2, sample3]
           
 
       
         super.viewDidLoad()
-         self.collectionView.reloadData()
+        
+        mymovielist = [movieList]()
+        mymovielist = DataManager.loadAll(movieList.self)
+        
+//         self.collectionView.reloadData()
         navigationController?.navigationBar.prefersLargeTitles = true
         
         //cannot search while editing
         navigationItem.leftBarButtonItem = editButtonItem
         
+        if let layout = collectionView?.collectionViewLayout as? PinterestLayout{
+            layout.delegate = self
+        }
         // Do any additional setup after loading the view.
     }
 //    func loadData(){
@@ -127,8 +136,15 @@ class ViewController :UICollectionViewController {
                 
         }
 
-
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+      let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 10)) / 2
+      return CGSize(width: itemSize, height: itemSize)
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if mymovielist.count == 0 {
+            mymovielist=sample
+        }
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let desVC = mainStoryboard.instantiateViewController(identifier: "EditMovieViewController") as! EditMovieViewController
         desVC.image = str2Img(imageStr: mymovielist[indexPath.row].image)!
@@ -188,9 +204,31 @@ extension ViewController: CollectionViewCellDelegate {
     }
 }
 
+extension ViewController: PinterestLayoutDelegate{
+    func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
+        print(indexPath.row)
+        print(mymovielist.count)
+        if mymovielist.count == 0 {
+            let photos = str2Img(imageStr: sample[indexPath.row].image)!
+            return photos.size.height        }
+        let photos = str2Img(imageStr: mymovielist[indexPath.row].image)!
+        return photos.size.height
+    }
+    
+    
+}
+
 
 //extension ViewController: UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        var columns:Int = 2
+//        let width = Int(collectionView.frame.width) / columns
 //
+////        return CGSize(width: width, height: width)
+//    }
+//}
+////extension ViewController: UICollectionViewDelegateFlowLayout {
+////
 //  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 //
 //    let padding: CGFloat = 25
