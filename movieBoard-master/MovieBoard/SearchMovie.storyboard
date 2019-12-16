@@ -229,6 +229,14 @@
                                     <action selector="openSafariAction:" destination="PmU-ZS-o7b" eventType="touchUpInside" id="3h5-7W-JgN"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uly-X5-0k1">
+                                <rect key="frame" x="320" y="377" width="57" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="공유하기!"/>
+                                <connections>
+                                    <action selector="shareButton:" destination="PmU-ZS-o7b" eventType="touchUpInside" id="jBv-ER-8A9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>

@@ -119,6 +119,28 @@ class detailMovie: UIViewController {
      UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
     
-
+    //공유하기버튼//
+    @IBAction func shareButton(_ sender: Any) {
+        
+        //공유할 아이템들//
+        let titletoshare: String = itemToEdit.title//제목
+        guard let imagetoshare: UIImage = str2Img(imageStr: itemToEdit.image) else {return} //포스터이미지
+        let linktoshare: String = itemToEdit.link //링크
+        
+        let activityController = UIActivityViewController(activityItems: [titletoshare, imagetoshare, linktoshare], applicationActivities: nil)
+        
+        activityController.completionWithItemsHandler = {(nil, completed, _, error)
+            in
+            if completed {
+                print("completed")
+                
+            }
+            else{
+                print("cancled")
+                
+            }
+            
+    }
+    present(activityController, animated: true, completion: nil)
 }
-
+}
