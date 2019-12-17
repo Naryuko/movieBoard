@@ -8,34 +8,76 @@
 
 import UIKit
 
-var mymovielist:[movieList] = []
-var wanttoseelist:[movieList] = []
-var sample:[movieList] = []
+// 싱글톤으로 영화리스트 변수 생성
+
+class Singleton
+{
+    static let shared: Singleton = {
+        var instance = Singleton()      
+        instance.mymovielist = []
+        instance.wanttoseelist = []
+        instance.samplelist = []
+        
+        let sample1 = movieList(title: "샘플1", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플")
+        let sample2 = movieList(title: "샘플2", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플")
+        let sample3 = movieList(title: "샘플3", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플")
+        instance.samplelist = [sample1, sample2, sample3]
+        return instance
+    }()
+    
+    var mymovielist:[movieList] = []
+    var wanttoseelist:[movieList] = []
+    var samplelist:[movieList] = []
+
+}
 
 
 
 class ViewController :UICollectionViewController {
-
-//    @IBAction func reload(_ sender: Any) {
-//        self.collectionView.reloadData()}
-// manual reload button
     
+    //셀에서 보여줄 포스터리스트
+    
+    var itemlist:[movieList] = Singleton.shared.mymovielist
+  
+    
+    @IBOutlet weak var select: UISegmentedControl!
+    
+    //화면선택버튼
+    @IBAction func changeview(_ sender: UISegmentedControl) {
+        if select.selectedSegmentIndex == 0 {
+            itemlist = Singleton.shared.mymovielist
+            self.collectionView.reloadData()
+            print("reloaded")
+        }
+        else if select.selectedSegmentIndex == 1 {
+            itemlist = Singleton.shared.wanttoseelist
+            self.collectionView.reloadData()
+            print("reloaded")
+        }
+    }
+    
+    //다용도 테스트버튼
     
     @IBAction func testbutton(_ sender: Any) {
 
-//        for i in mymovielist{
-//            DataManager.delet(i.title)}
-//
-//        mymovielist = []
-//
-//        for i in mymovielist{
-//            print(i.title)
-//            DataManager.save(i, with: i.title)}
-        print(mymovielist.count)
-        print(sample.count)
+        
+        
+        print("test start")
+        
+        DataManager.delet("mymovielist")
+        DataManager.delet("wanttoseelist")
+        
+        Singleton.shared.mymovielist=[]
+        Singleton.shared.samplelist=[]
+        
+ 
+        print(Singleton.shared.mymovielist.count)
+        print(Singleton.shared.samplelist.count)
         print("Test")
     }
+    
     @IBOutlet weak var searchBarButton: UIBarButtonItem!
+    
     @IBAction func goSearchMovie(_ sender: Any) {
         let storyBoard = UIStoryboard(name: "SearchMovie", bundle: nil)
         let viewController = storyBoard.instantiateViewController(identifier: "SearchMovie")
@@ -49,33 +91,19 @@ class ViewController :UICollectionViewController {
 
     override func viewDidLoad() {
 
-//    var testitems = ["a","b","c"] // This is the test item
-//        let mymovielistItem = MyMovieListItem(title: "testtitel", link: "test", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1871/187157_P01_144536.png", subtitle: "test", pubDate: "test", director: "test", actor: "test", userRating: "test")
-//        mymovielistItem.saveItem()
-//        print(mymovielistItem.)
+        if self.itemlist.count == 0 {
+          itemlist = Singleton.shared.samplelist
+          }
         
-        
-         mymovielist = [movieList]()
-         mymovielist = DataManager.loadAll(movieList.self)
-        
-        wanttoseelist = [movieList]()
-        wanttoseelist = DataManager.loadAll(movieList.self)
-        
-        // 콜랙션뷰 디폴트 샘플이미지
-
-                let sample1 = movieList(title: "샘플1", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플")
-                let sample2 = movieList(title: "샘플2", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플")
-                let sample3 = movieList(title: "샘플3", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플")
-                
-
-            let sample = [sample1, sample2, sample3]
-          
+        //저장된 데이터 로드
+        Singleton.shared.mymovielist = DataManager.load("movieList", with: )
+        Singleton.shared.wanttoseelist = DataManager.load("wanttoseelist")
+       
         print("viewDidload")
-      
+        
         super.viewDidLoad()
  
         
-//         self.collectionView.reloadData()
         navigationController?.navigationBar.prefersLargeTitles = true
         
         //cannot search while editing
@@ -90,27 +118,15 @@ class ViewController :UICollectionViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        for i in mymovielist{
-            DataManager.save(i, with: i.title)
-        }
-        for i in wanttoseelist{
-            DataManager.save(i, with: i.title)
-            
-            
-
-
-        }
-        // After add list and you back, reload(refresh) main page And save the list
+        
+        //콜랜션뷰 리로드
+        
         self.collectionView.reloadData()
         print("reloaded")
     }
     
-//    func loadData(){
-//        mymovielist = [MyMovieListItem]()
-//        mymovielist = DataManager.loadAll(MyMovieListItem.self) //.sorted
-////        collectionView.reloadData()
-//    }
-    
+
+        //콜랙션뷰 섹션
         override func numberOfSections(in collectionView: UICollectionView) -> Int {
 
             return 1
@@ -118,51 +134,61 @@ class ViewController :UICollectionViewController {
         }
 
 
-
+        //콜랙션뷰 셀 개수
         override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-                    if mymovielist.count == 0 {
-                        return sample.count
+                    if itemlist.count == 0 {
+                        return Singleton.shared.samplelist.count
                     }
-                    return mymovielist.count
-        // number of collection cell = mymovielist items
+                        return itemlist.count
                 }
 
-
+    
+        //콜랙션뷰 셀 불러오기
         override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Mycell", for: indexPath) as? CollectionViewCell
-                if mymovielist.count == 0 {
-                    cell?.cellimage.image = str2Img(imageStr: sample[indexPath.row].image)
+            
+                if itemlist.count == 0 {
+                    cell?.cellimage.image = str2Img(imageStr: Singleton.shared.samplelist[indexPath.row].image)
                     return cell!
                 }
-                cell?.cellimage.image = str2Img(imageStr: mymovielist[indexPath.row].image)
-        //            cell?.cellimage.image = str2Img(imageStr: mymovielist[indexPath.row].image)
-        //            cell?.label1.text = mymovielist[indexPath.row].title
+                cell?.cellimage.image = str2Img(imageStr: itemlist[indexPath.row].image)
+
 
                 return cell!
-
-                
         }
 
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
       let itemSize = (collectionView.frame.width - (collectionView.contentInset.left + collectionView.contentInset.right + 10)) / 2
       return CGSize(width: itemSize, height: itemSize)
     }
     
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if mymovielist.count == 0 {
-            mymovielist=sample
-        }
+        if itemlist.count==0 {alert(title: "Add item First!", message: "additemfirst", text: "additemfirst3")}
+        else{
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let desVC = mainStoryboard.instantiateViewController(identifier: "EditMovieViewController") as! EditMovieViewController
-        desVC.image = str2Img(imageStr: mymovielist[indexPath.row].image)!
-        desVC.ttl = mymovielist[indexPath.row].title
-        desVC.pdate = mymovielist[indexPath.row].pubDate
-        desVC.direct = mymovielist[indexPath.row].director
-    self.navigationController?.pushViewController(desVC, animated: true)
+            
+        desVC.image = str2Img(imageStr: itemlist[indexPath.row].image)!
+        desVC.ttl = itemlist[indexPath.row].title
+        desVC.pdate = itemlist[indexPath.row].pubDate
+        desVC.direct = itemlist[indexPath.row].director
+            
+            self.navigationController?.pushViewController(desVC, animated: true)}
     }
     
-//delete movie
+    //메세지팝업창
+    func alert(title:String, message: String, text: String){
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let okButton = UIAlertAction(title: "ok", style: UIAlertAction.Style.cancel, handler: nil)
+        alert.addAction(okButton)
+        
+        return self.present(alert, animated:true, completion: nil)}
+    
+
     
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
@@ -176,14 +202,6 @@ class ViewController :UICollectionViewController {
         }
     }
 
-    
-//    cell?.lable1.text = mymovielist[indexPath.row].title
-    
-//    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let vc = storyboard?.instantiateViewController(withIdentifier: "EditMovieViewController") as? EditMovieViewController
-//        vc?.ttl = mymovielist[indexPath.row].title
-//        self.navigationController?.pushViewController(vc!, animated: true)
-//    }
     
     func str2Img(imageStr: String) -> UIImage? {
         if !imageStr.isEmpty {
@@ -205,45 +223,25 @@ class ViewController :UICollectionViewController {
 extension ViewController: CollectionViewCellDelegate {
     func delete(cell: CollectionViewCell) {
         if let indexPath = collectionView?.indexPath(for: cell) {
-            mymovielist.remove(at: indexPath.row)
+            itemlist.remove(at: indexPath.row)
             
             collectionView?.deleteItems(at: [indexPath])
         }
     }
 }
 
+//핀터레스트
 extension ViewController: PinterestLayoutDelegate{
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath indexPath: IndexPath) -> CGFloat {
         print(indexPath.row)
-        print(mymovielist.count)
-        if mymovielist.count == 0 {
-            let photos = str2Img(imageStr: sample[indexPath.row].image)!
+        print(itemlist.count)
+        if itemlist.count == 0 {
+            let photos = str2Img(imageStr: itemlist[indexPath.row].image)!
             return photos.size.height        }
-        let photos = str2Img(imageStr: mymovielist[indexPath.row].image)!
+        let photos = str2Img(imageStr: itemlist[indexPath.row].image)!
         return photos.size.height
     }
     
     
 }
 
-
-//extension ViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        var columns:Int = 2
-//        let width = Int(collectionView.frame.width) / columns
-//
-////        return CGSize(width: width, height: width)
-//    }
-//}
-////extension ViewController: UICollectionViewDelegateFlowLayout {
-////
-//  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//    let padding: CGFloat = 25
-//    let collectionCellSize = collectionView.frame.size.width - padding
-//
-//  return CGSize(width: collectionCellSize/2, height: collectionCellSize/2)
-//
-//   }
-//
-//}

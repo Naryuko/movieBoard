@@ -107,11 +107,23 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" id="u0Q-Pd-H6R">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="삭제" id="xfi-xL-S1Z">
                             <connections>
                                 <action selector="testbutton:" destination="cDc-wa-MPG" id="jBX-dZ-Z5R"/>
                             </connections>
                         </barButtonItem>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Nsh-n2-3GS">
+                            <rect key="frame" x="141.5" y="6" width="131" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="본 영화"/>
+                                <segment title="볼 영화"/>
+                            </segments>
+                            <connections>
+                                <action selector="changeview:" destination="cDc-wa-MPG" eventType="valueChanged" id="aX9-El-0sA"/>
+                            </connections>
+                        </segmentedControl>
                         <rightBarButtonItems>
                             <barButtonItem title="검색" id="yKK-07-0nq">
                                 <connections>
@@ -129,6 +141,7 @@
                     <connections>
                         <outlet property="collectionView" destination="1VI-cC-JBG" id="ZTA-Ly-3b5"/>
                         <outlet property="searchBarButton" destination="yKK-07-0nq" id="snq-9b-fFT"/>
+                        <outlet property="select" destination="Nsh-n2-3GS" id="foS-qV-Dna"/>
                         <segue destination="7vj-KP-nH5" kind="show" identifier="EditMovie" id="DA3-mt-cKz"/>
                     </connections>
                 </collectionViewController>

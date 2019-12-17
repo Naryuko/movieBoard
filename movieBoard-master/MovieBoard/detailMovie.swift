@@ -70,7 +70,7 @@ class detailMovie: UIViewController {
         print(itemToEdit.title + " is clicked")
         print(itemToEdit.image)
         var find:Bool = false
-        for iteminlist in mymovielist{
+        for iteminlist in Singleton.shared.mymovielist{
             if iteminlist.title == itemToEdit.title {
                 find = true
                 break
@@ -80,7 +80,7 @@ class detailMovie: UIViewController {
             alert(title: "추가 실패!", message: "이미 본 영화 목록에 추가되어 있어요!", text: "c")
         }
         else{
-            mymovielist.append(itemToEdit)
+            Singleton.shared.mymovielist.append(itemToEdit)
              alert(title: "목록에 추가 성공!", message: "본영화 목록에 성공적으로 추가 되었어요!", text: "c")
         }
     }
@@ -89,7 +89,7 @@ class detailMovie: UIViewController {
     @IBAction func addwanttosee(_ sender: Any) {
             print(itemToEdit.title + " is clicked")
             var find:Bool = false
-            for iteminlist in wanttoseelist {
+            for iteminlist in Singleton.shared.wanttoseelist {
                 if iteminlist.title == itemToEdit.title {
                     find = true
                     break
@@ -99,7 +99,7 @@ class detailMovie: UIViewController {
                 alert(title: "추가 실패!", message: "이미 보고싶은 영화 목록에 추가되어 있어요!", text: "c")
             }
             else{
-                wanttoseelist.append(itemToEdit)
+                Singleton.shared.wanttoseelist.append(itemToEdit)
                  alert(title: "목록에 추가 성공!", message: "보고싶은 영화 목록에 성공적으로 추가 되었어요!", text: "c")
             }
     }
