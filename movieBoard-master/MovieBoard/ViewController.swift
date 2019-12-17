@@ -280,8 +280,9 @@ extension ViewController: PinterestLayoutDelegate{
         print(indexPath.row)
         print(itemlist.count)
         if itemlist.count == 0 {
-            let photos = str2Img(imageStr: itemlist[indexPath.row].image)!
-            return photos.size.height        }
+            let photos = str2Img(imageStr: Singleton.shared.samplelist[0].image)!
+            return photos.size.height
+        }
         let photos = str2Img(imageStr: itemlist[indexPath.row].image)!
         return photos.size.height
     }
