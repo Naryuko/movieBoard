@@ -66,7 +66,7 @@ class naverAPI {
                     let director = aaa.items[i].director
                     let actor = aaa.items[i].actor
                     let userRating = aaa.items[i].userRating
-                    MovieList.append(movieList(title:title, link: link, image: image, subtitle: subtitle, pubDate: pubDate, director: director, actor: actor, userRating: userRating))
+                    MovieList.append(movieList(title:title, link: link, image: image, subtitle: subtitle, pubDate: pubDate, director: director, actor: actor, userRating: userRating, comment: ""))
                 }
             }
         } catch let error as NSError {

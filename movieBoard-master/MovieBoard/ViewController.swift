@@ -18,9 +18,9 @@ class Singleton
         instance.wanttoseelist = []
         instance.samplelist = []
         
-        let sample1 = movieList(title: "샘플1", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플")
-        let sample2 = movieList(title: "샘플2", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플")
-        let sample3 = movieList(title: "샘플3", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플")
+        let sample1 = movieList(title: "샘플1", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플", comment: "샘플")
+        let sample2 = movieList(title: "샘플2", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플", comment: "샘플")
+        let sample3 = movieList(title: "샘플3", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플", comment: "샘플")
         instance.samplelist = [sample1, sample2, sample3]
         return instance
     }()
@@ -206,6 +206,7 @@ class ViewController :UICollectionViewController {
             desVC.itemToEdit.pubDate = itemlist[indexPath.row].pubDate
             desVC.itemToEdit.link = itemlist[indexPath.row].link
             desVC.itemToEdit.image = itemlist[indexPath.row].image
+            desVC.itemToEdit.comment = itemlist[indexPath.row].comment
             
             desVC.modalPresentationStyle = UIModalPresentationStyle.automatic
             

@@ -45,8 +45,9 @@ class movieList: Codable{
     var director: String
     var actor: String
     var userRating: String
+    var comment: String
     
-    init(title: String, link: String, image: String, subtitle: String, pubDate: String, director: String, actor: String, userRating: String) {
+    init(title: String, link: String, image: String, subtitle: String, pubDate: String, director: String, actor: String, userRating: String, comment: String) {
         self.title = title
         self.link = link
         self.image = image
@@ -55,6 +56,7 @@ class movieList: Codable{
         self.director = director
         self.actor = actor
         self.userRating = userRating
+        self.comment = comment
     }
         func saveItem(){
             DataManager.save(self, with: title)

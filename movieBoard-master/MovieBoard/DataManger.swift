@@ -49,6 +49,7 @@ public class DataManager {
                 let model = try JSONDecoder().decode(type, from: data)
                 return model
             } catch{
+                print(url.path)
                 fatalError(error.localizedDescription)
             }
         }else {
