@@ -12,7 +12,7 @@ public class DataManager {
     
     // get Document Directroy
     
-    static fileprivate func getDocumentDirectory () -> URL {
+    static func getDocumentDirectory () -> URL {
         if let url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             return url
         } else{

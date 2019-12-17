@@ -37,7 +37,7 @@ class SearchMovie: UIViewController {
     
     //화면이 꺼질때 저장
     override func viewWillDisappear(_ animated: Bool) {
-        
+
             DataManager.save(Singleton.shared.mymovielist, with: "mymovielist")
             DataManager.save(Singleton.shared.wanttoseelist, with: "wanttoseelist")
 

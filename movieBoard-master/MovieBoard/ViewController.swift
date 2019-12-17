@@ -46,11 +46,17 @@ class ViewController :UICollectionViewController {
     @IBAction func changeview(_ sender: UISegmentedControl) {
         if select.selectedSegmentIndex == 0 {
             itemlist = Singleton.shared.mymovielist
+            if self.itemlist.count == 0 {
+              itemlist = Singleton.shared.samplelist
+              }
             self.collectionView.reloadData()
             print("reloaded")
         }
         else if select.selectedSegmentIndex == 1 {
             itemlist = Singleton.shared.wanttoseelist
+            if self.itemlist.count == 0 {
+              itemlist = Singleton.shared.samplelist
+              }
             self.collectionView.reloadData()
             print("reloaded")
         }
@@ -63,16 +69,21 @@ class ViewController :UICollectionViewController {
         
         
         print("test start")
-        
+        Singleton.shared.mymovielist=[]
+        Singleton.shared.wanttoseelist = []
         DataManager.delet("mymovielist")
         DataManager.delet("wanttoseelist")
+//        DataManager.save(Singleton.shared.mymovielist, with: "mymovielist")
+//        DataManager.save(Singleton.shared.wanttoseelist, with: "wanttoseelist")
+//        print("saved")
+//
+//        Singleton.shared.mymovielist = DataManager.load("mymovielist", with: type(of: Singleton.shared.mymovielist))
+//        print("loaded2")
+//        Singleton.shared.wanttoseelist = DataManager.load("wanttoseelist", with: type(of: Singleton.shared.wanttoseelist))
+//        print("loaded2")
+//        print(Singleton.shared.mymovielist.count)
+//        print(Singleton.shared.samplelist.count)
         
-        Singleton.shared.mymovielist=[]
-        Singleton.shared.samplelist=[]
-        
- 
-        print(Singleton.shared.mymovielist.count)
-        print(Singleton.shared.samplelist.count)
         print("Test")
     }
     
@@ -91,14 +102,24 @@ class ViewController :UICollectionViewController {
 
     override func viewDidLoad() {
 
+
+        //저장된 데이터 로드
+        var url = DataManager.getDocumentDirectory().appendingPathComponent("mymovielist", isDirectory: false)
+        
+        if FileManager.default.fileExists(atPath: url.path){
+            Singleton.shared.mymovielist = DataManager.load("mymovielist", with: type(of: Singleton.shared.mymovielist))
+        }
+        url = DataManager.getDocumentDirectory().appendingPathComponent("wanttoseelist", isDirectory: false)
+               if FileManager.default.fileExists(atPath: url.path){
+                   Singleton.shared.wanttoseelist = DataManager.load("wanttoseelist", with: type(of: Singleton.shared.wanttoseelist))
+               }
+        
+        itemlist = Singleton.shared.mymovielist
+        
         if self.itemlist.count == 0 {
           itemlist = Singleton.shared.samplelist
           }
         
-        //저장된 데이터 로드
-        Singleton.shared.mymovielist = DataManager.load("movieList", with: )
-        Singleton.shared.wanttoseelist = DataManager.load("wanttoseelist")
-       
         print("viewDidload")
         
         super.viewDidLoad()
@@ -116,12 +137,18 @@ class ViewController :UICollectionViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        itemlist = Singleton.shared.mymovielist
+        if self.itemlist.count == 0 {
+          itemlist = Singleton.shared.samplelist
+          }
+        self.collectionView.reloadData()
+        
         super.viewWillAppear(animated)
         
         
         //콜랜션뷰 리로드
         
-        self.collectionView.reloadData()
         print("reloaded")
     }
     
