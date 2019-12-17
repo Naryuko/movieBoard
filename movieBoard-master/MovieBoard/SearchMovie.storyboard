@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6oR-Sw-OQV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6oR-Sw-OQV">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -149,7 +149,7 @@
         <!--Detail Movie-->
         <scene sceneID="Bu0-oA-vQT">
             <objects>
-                <viewController id="PmU-ZS-o7b" customClass="detailMovie" customModule="MovieBoard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailMovie" id="PmU-ZS-o7b" customClass="detailMovie" customModule="MovieBoard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nt3-Cw-vZv">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -207,20 +207,23 @@
                                 <rect key="frame" x="70" y="778" width="39" height="30"/>
                                 <state key="normal" title="봤어요"/>
                                 <connections>
-                                    <action selector="addbutton:" destination="PmU-ZS-o7b" eventType="touchUpInside" id="peB-7B-aNO"/>
+                                    <action selector="addbutton:" destination="PmU-ZS-o7b" eventType="touchUpInside" id="wiM-rp-lKv"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CbK-gV-FJE">
                                 <rect key="frame" x="305" y="778" width="39" height="30"/>
                                 <state key="normal" title="볼래요"/>
                                 <connections>
-                                    <action selector="addwanttosee:" destination="PmU-ZS-o7b" eventType="touchUpInside" id="Y92-CW-g32"/>
+                                    <action selector="addwanttosee:" destination="PmU-ZS-o7b" eventType="touchUpInside" id="9pQ-rj-kdC"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="200" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jzR-Zt-G4G">
                                 <rect key="frame" x="10" y="546.5" width="394" height="221.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldChange:" destination="PmU-ZS-o7b" eventType="editingChanged" id="zg7-6e-fYS"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xU2-zf-mJP">
                                 <rect key="frame" x="10" y="479.5" width="46" height="30"/>

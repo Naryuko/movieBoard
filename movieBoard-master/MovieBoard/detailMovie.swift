@@ -12,7 +12,7 @@ import WebKit
 
 
 class detailMovie: UIViewController {
-    var itemToEdit: movieList = movieList(title: "", link: "", image: "", subtitle: "", pubDate: "", director: "", actor: "", userRating: "")
+    var itemToEdit: movieList = movieList(title: "", link: "", image: "", subtitle: "", pubDate: "", director: "", actor: "", userRating: "", comment: "")
     @IBOutlet weak var titleL: UILabel!
     @IBOutlet weak var subTitleL: UILabel!
     @IBOutlet weak var pubDateL: UILabel!
@@ -28,12 +28,21 @@ class detailMovie: UIViewController {
         super.init(coder: coder)
     }
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureText(with: itemToEdit)
         configureImage(with: itemToEdit)
+    }
+    
+    
+    @IBAction func textFieldChange(_ sender: UITextField) {
+        if sender.text == nil {
+            itemToEdit.comment = ""
+        } else {
+            itemToEdit.comment = sender.text!
+            print(itemToEdit.comment)
+        }
     }
     
     func str2Img(imageStr: String) -> UIImage? {
@@ -59,7 +68,11 @@ class detailMovie: UIViewController {
         actorL.text = "배우 : " + item.actor
         userRatingL.text = "관람객 평점 : " + item.userRating
         linkB.setTitle(item.link, for: .normal)
+        if item.comment != "" {
+            textfield.text = item.comment
+        }
     }
+    
     
     func configureImage(with item: movieList) {
         imageL.image = str2Img(imageStr: item.image)
@@ -68,40 +81,62 @@ class detailMovie: UIViewController {
     
     @IBAction func addbutton(_ sender: Any) {
         print(itemToEdit.title + " is clicked")
+        print(itemToEdit.comment)
         print(itemToEdit.image)
         var find:Bool = false
-        for iteminlist in mymovielist{
+        var check:Bool = false
+        for iteminlist in Singleton.shared.mymovielist{
             if iteminlist.title == itemToEdit.title {
+                if iteminlist.comment != itemToEdit.comment {
+                    iteminlist.comment = itemToEdit.comment
+                    DataManager.save(Singleton.shared.mymovielist, with: "mymovielist")
+                    DataManager.save(Singleton.shared.wanttoseelist, with: "wanttoseelist")
+                    check = true
+                    break
+                }
                 find = true
                 break
             }
         }
-        if find {
+        if (find == true) && (check == false) {
             alert(title: "추가 실패!", message: "이미 본 영화 목록에 추가되어 있어요!", text: "c")
-        }
-        else{
-            mymovielist.append(itemToEdit)
-             alert(title: "목록에 추가 성공!", message: "본영화 목록에 성공적으로 추가 되었어요!", text: "c")
+        } else if (find == false) && (check == true) {
+            alert(title: "변경 완료", message: "이 영화에 대한 comment가 변경되었습니다", text: "c")
+        } else if (find == false) && (check == false) {
+            Singleton.shared.mymovielist.append(itemToEdit)
+            alert(title: "목록에 추가 성공!", message: "본영화 목록에 성공적으로 추가 되었어요!", text: "c")
         }
     }
     
     
     @IBAction func addwanttosee(_ sender: Any) {
-            print(itemToEdit.title + " is clicked")
-            var find:Bool = false
-            for iteminlist in wanttoseelist {
-                if iteminlist.title == itemToEdit.title {
-                    find = true
+        print(itemToEdit.title + " is clicked")
+        var find:Bool = false
+        var check:Bool = false
+        for iteminlist in Singleton.shared.wanttoseelist {
+            if iteminlist.title == itemToEdit.title {
+                
+                if iteminlist.comment != itemToEdit.comment {
+                    iteminlist.comment = itemToEdit.comment
+                    DataManager.save(Singleton.shared.mymovielist, with: "mymovielist")
+                    DataManager.save(Singleton.shared.wanttoseelist, with: "wanttoseelist")
+                    check = true
                     break
                 }
+                
+                
+                find = true
+                break
             }
-            if find {
-                alert(title: "추가 실패!", message: "이미 보고싶은 영화 목록에 추가되어 있어요!", text: "c")
-            }
-            else{
-                wanttoseelist.append(itemToEdit)
-                 alert(title: "목록에 추가 성공!", message: "보고싶은 영화 목록에 성공적으로 추가 되었어요!", text: "c")
-            }
+        }
+        if (find == true) && (check == false) {
+            alert(title: "추가 실패!", message: "이미 보고싶은 영화 목록에 추가되어 있어요!", text: "c")
+        } else if (find == false) && (check == true) {
+            alert(title: "변경 완료", message: "이 영화에 대한 comment가 변경되었습니다", text: "c")
+        } else if (find == false) && (check == false) {
+            Singleton.shared.wanttoseelist.append(itemToEdit)
+            alert(title: "목록에 추가 성공!", message: "보고싶은 영화 목록에 성공적으로 추가 되었어요!", text: "c")
+        }
     }
     
     func alert(title:String, message: String, text: String){

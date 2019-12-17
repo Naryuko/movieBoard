@@ -8,6 +8,8 @@
 // https://www.raywenderlich.com/4829472-uicollectionview-custom-layout-tutorial-pinterest 참조
 import UIKit
 
+
+
 protocol PinterestLayoutDelegate: AnyObject{
     func collectionView(_ collectionView: UICollectionView, heightForPhotoAtIndexPath: IndexPath) ->CGFloat
 }
@@ -23,6 +25,7 @@ class PinterestLayout: UICollectionViewLayout {
     
     //cellpadding : 셀안쪽여백
     private let cellPadding: CGFloat = 3
+    
     //계산해서 필요한 attributes임시저장
     private var cache: [UICollectionViewLayoutAttributes] = []
     
@@ -94,6 +97,8 @@ class PinterestLayout: UICollectionViewLayout {
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         return cache[indexPath.item]
     }
+    
+    
 }
 
 

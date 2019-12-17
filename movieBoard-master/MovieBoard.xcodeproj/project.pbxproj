@@ -125,8 +125,8 @@
 				04CF3B4D2379B66000548FE6 /* AppDelegate.swift */,
 				04CF3B4F2379B66000548FE6 /* SceneDelegate.swift */,
 				04CF3B532379B66000548FE6 /* Main.storyboard */,
-				EBB01A6E23A6AE54000F9246 /* PinterestLayout.swift */,
 				04CF3B512379B66000548FE6 /* ViewController.swift */,
+				EBB01A6E23A6AE54000F9246 /* PinterestLayout.swift */,
 				EBBC5B0D239FC3B9008ADD19 /* EditMovieViewController.swift */,
 				04CF3B562379B66100548FE6 /* Assets.xcassets */,
 				045E856B2386DA6D00D77F18 /* SearchMovie.storyboard */,
@@ -483,6 +483,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NK8PAB348Q;
 				INFOPLIST_FILE = MovieBoard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -500,6 +501,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = NK8PAB348Q;
 				INFOPLIST_FILE = MovieBoard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

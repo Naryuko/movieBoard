@@ -35,6 +35,13 @@ class SearchMovie: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    //화면이 꺼질때 저장
+    override func viewWillDisappear(_ animated: Bool) {
+
+            DataManager.save(Singleton.shared.mymovielist, with: "mymovielist")
+            DataManager.save(Singleton.shared.wanttoseelist, with: "wanttoseelist")
+
+    }
     func str2Img(imageStr: String) -> UIImage? {
         if !imageStr.isEmpty {
             let imageUrl = URL(string: imageStr)
@@ -82,9 +89,7 @@ extension SearchMovie: UITableViewDelegate, UITableViewDataSource {
         cell?.label4.text = "감독 : " + item.director
         cell?.label5.text = "배우 : " + item.actor
         cell?.imagelabel.image = str2Img(imageStr: item.image)
-//        configureText(for: cell, with: item)
-//        configureImage(for: cell, with: item)
-//
+        
         return cell!
     }
 
@@ -97,7 +102,7 @@ extension SearchMovie: (SearchTabelViewprotocol){
     func onClickCell(index: Int) {
         print(searchResult[index].title + " is clicked")
         var find:Bool = false
-        for iteminlist in mymovielist{
+        for iteminlist in Singleton.shared.mymovielist{
             if iteminlist.title == searchResult[index].title {
                 find = true
                 break
@@ -107,15 +112,15 @@ extension SearchMovie: (SearchTabelViewprotocol){
                 alert(title: "추가 실패!", message: "이미 본 영화 목록에 추가되어 있어요!", text: "c")
             }
             else{
-                mymovielist.append(searchResult[index])
+                Singleton.shared.mymovielist.append(searchResult[index])
                  alert(title: "목록에 추가 성공!", message: "본영화 목록에 성공적으로 추가 되었어요!", text: "c")
             }
         }
 
     func onClickWantToSee(index: Int) {
-    print(searchResult[index].title + " is clicked")
-    var find:Bool = false
-    for iteminlist in wanttoseelist {
+        print(searchResult[index].title + " is clicked")
+        var find:Bool = false
+        for iteminlist in Singleton.shared.wanttoseelist {
         if iteminlist.title == searchResult[index].title {
             find = true
             break
@@ -125,16 +130,16 @@ extension SearchMovie: (SearchTabelViewprotocol){
             alert(title: "추가 실패!", message: "이미 보고싶은 영화 목록에 추가되어 있어요!", text: "c")
         }
         else{
-            wanttoseelist.append(searchResult[index])
+            Singleton.shared.wanttoseelist.append(searchResult[index])
              alert(title: "목록에 추가 성공!", message: "보고싶은 영화 목록에 성공적으로 추가 되었어요!", text: "c")
+            }
         }
-    }
-    
+        
     func alert(title:String, message: String, text: String){
-    let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-    let okButton = UIAlertAction(title: "ok", style: UIAlertAction.Style.cancel, handler: nil)
-    alert.addAction(okButton)
-    return self.present(alert, animated:true, completion: nil)}
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        let okButton = UIAlertAction(title: "ok", style: UIAlertAction.Style.cancel, handler: nil)
+        alert.addAction(okButton)
+        return self.present(alert, animated:true, completion: nil)}
     
     }
     

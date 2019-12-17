@@ -29,3 +29,4 @@ class CollectionViewCell: UICollectionViewCell {
         delegate?.delete(cell: self)
     }
 }
+
