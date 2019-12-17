@@ -263,6 +263,13 @@ extension ViewController: CollectionViewCellDelegate {
         if let indexPath = collectionView?.indexPath(for: cell) {
             itemlist.remove(at: indexPath.row)
             collectionView?.deleteItems(at: [indexPath])
+            if select.selectedSegmentIndex == 0 {
+                Singleton.shared.mymovielist.remove(at: indexPath.row)
+            } else if select.selectedSegmentIndex == 1 {
+                Singleton.shared.wanttoseelist.remove(at: indexPath.row)
+            }
+            DataManager.save(Singleton.shared.mymovielist, with: "mymovielist")
+            DataManager.save(Singleton.shared.wanttoseelist, with: "wanttoseelist")
         }
     }
 }
