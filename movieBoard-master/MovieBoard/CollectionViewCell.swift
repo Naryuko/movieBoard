@@ -21,7 +21,6 @@ class CollectionViewCell: UICollectionViewCell {
     var isEditing: Bool = false {
         didSet {
             deleteButtonBackground.isHidden = !isEditing
-            
         }
     }
     
