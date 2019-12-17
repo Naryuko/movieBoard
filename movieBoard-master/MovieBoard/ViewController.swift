@@ -46,7 +46,7 @@ class ViewController :UICollectionViewController {
     
     @IBOutlet weak var selectviewnumber: UISegmentedControl!
     
-    //본영화 볼영화 선택버튼
+    //본영화와 볼영화 선택버튼
     @IBAction func changeview(_ sender: UISegmentedControl) {
         if select.selectedSegmentIndex == 0 {
             itemlist = Singleton.shared.mymovielist
@@ -132,6 +132,17 @@ class ViewController :UICollectionViewController {
         
     }
     
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if (kind == UICollectionView.elementKindSectionFooter) {
+        let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CartFooterCollectionReusableView", for: indexPath)
+        // Customize footerView here
+        return footerView
+        } else if (kind == UICollectionView.elementKindSectionHeader) {
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CartHeaderCollectionReusableView", for: indexPath)
+        // Customize headerView here
+        return headerView
+    }
+        fatalError()}
 
     override func viewDidLoad() {
 
