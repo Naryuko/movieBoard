@@ -55,7 +55,7 @@
                                                         <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                                                         <state key="normal" image="xmark" catalog="system"/>
                                                         <connections>
-                                                            <action selector="deleteButtonDidTap:" destination="qw6-ep-GFl" eventType="touchUpInside" id="24B-bt-E6b"/>
+                                                            <action selector="deleteButtonDidTap:" destination="qw6-ep-GFl" eventType="touchUpInside" id="AoG-HB-ybH"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -109,7 +109,7 @@
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="삭제" id="xfi-xL-S1Z">
                             <connections>
-                                <action selector="testbutton:" destination="cDc-wa-MPG" id="jBX-dZ-Z5R"/>
+                                <action selector="testbutton:" destination="cDc-wa-MPG" id="bwN-Z4-Oyh"/>
                             </connections>
                         </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="Nsh-n2-3GS">

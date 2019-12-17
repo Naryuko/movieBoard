@@ -121,7 +121,9 @@ class ViewController :UICollectionViewController {
           }
         
         print("viewDidload")
-        
+        if let layout = collectionView?.collectionViewLayout as? PinterestLayout{
+            layout.delegate = self
+        }
         super.viewDidLoad()
  
         
@@ -130,9 +132,7 @@ class ViewController :UICollectionViewController {
         //cannot search while editing
         navigationItem.leftBarButtonItem = editButtonItem
         
-        if let layout = collectionView?.collectionViewLayout as? PinterestLayout{
-            layout.delegate = self
-        }
+        
         // Do any additional setup after loading the view.
     }
     
@@ -173,13 +173,15 @@ class ViewController :UICollectionViewController {
         //콜랙션뷰 셀 불러오기
         override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Mycell", for: indexPath) as? CollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Mycell", for: indexPath) as? CollectionViewCell
             
-                if itemlist.count == 0 {
-                    cell?.cellimage.image = str2Img(imageStr: Singleton.shared.samplelist[indexPath.row].image)
-                    return cell!
-                }
-                cell?.cellimage.image = str2Img(imageStr: itemlist[indexPath.row].image)
+            if itemlist.count == 0 {
+                cell?.cellimage.image = str2Img(imageStr: Singleton.shared.samplelist[indexPath.row].image)
+                return cell!
+            }
+            cell?.cellimage.image = str2Img(imageStr: itemlist[indexPath.row].image)
+            cell?.deleteButtonBackground.isHidden = !isEditing
+            cell?.delegate = self
 
 
                 return cell!
@@ -253,14 +255,13 @@ class ViewController :UICollectionViewController {
             return nil
         }
     }
-    
-    }
+        
+}
     
 extension ViewController: CollectionViewCellDelegate {
     func delete(cell: CollectionViewCell) {
         if let indexPath = collectionView?.indexPath(for: cell) {
             itemlist.remove(at: indexPath.row)
-            
             collectionView?.deleteItems(at: [indexPath])
         }
     }
