@@ -192,18 +192,26 @@ class ViewController :UICollectionViewController {
     }
     
     
+    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if itemlist.count==0 {alert(title: "Add item First!", message: "additemfirst", text: "additemfirst3")}
-        else{
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let desVC = mainStoryboard.instantiateViewController(identifier: "EditMovieViewController") as! EditMovieViewController
+        if itemlist.count==0 {alert(title: "Add item First!", message: "additemfirst", text: "additemfirst3")
+        } else {
+            let storyboard: UIStoryboard = UIStoryboard(name: "SearchMovie", bundle: nil)
+            let desVC = storyboard.instantiateViewController(identifier: "detailMovie") as! detailMovie
             
-        desVC.image = str2Img(imageStr: itemlist[indexPath.row].image)!
-        desVC.ttl = itemlist[indexPath.row].title
-        desVC.pdate = itemlist[indexPath.row].pubDate
-        desVC.direct = itemlist[indexPath.row].director
+            desVC.itemToEdit.title = itemlist[indexPath.row].title
+            desVC.itemToEdit.subtitle = itemlist[indexPath.row].subtitle
+            desVC.itemToEdit.director = itemlist[indexPath.row].director
+            desVC.itemToEdit.actor = itemlist[indexPath.row].director
+            desVC.itemToEdit.pubDate = itemlist[indexPath.row].pubDate
+            desVC.itemToEdit.link = itemlist[indexPath.row].link
+            desVC.itemToEdit.image = itemlist[indexPath.row].image
             
-            self.navigationController?.pushViewController(desVC, animated: true)}
+            desVC.modalPresentationStyle = UIModalPresentationStyle.automatic
+            
+            self.present(desVC, animated: true, completion: nil)
+        }
+
     }
     
     //메세지팝업창
