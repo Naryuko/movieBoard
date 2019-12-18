@@ -17,6 +17,7 @@ class Singleton
         instance.mymovielist = []
         instance.wanttoseelist = []
         instance.samplelist = []
+        instance.numset = 3
         
         let sample1 = movieList(title: "샘플1", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플", comment: "샘플")
         let sample2 = movieList(title: "샘플2", link: "샘플", image: "https://ssl.pstatic.net/imgmovie/mdi/mit110/1153/115317_P01_183558.jpg", subtitle: "샘플", pubDate: "샘플", director: "샘플", actor: "샘플", userRating: "샘플", comment: "샘플")
@@ -28,6 +29,7 @@ class Singleton
     var mymovielist:[movieList] = []
     var wanttoseelist:[movieList] = []
     var samplelist:[movieList] = []
+    var numset = 3
 
 }
 
@@ -42,7 +44,9 @@ class ViewController :UICollectionViewController {
     
     @IBOutlet weak var select: UISegmentedControl!
     
-    //화면선택버튼
+    @IBOutlet weak var selectviewnumber: UISegmentedControl!
+    
+    //본영화와 볼영화 선택버튼
     @IBAction func changeview(_ sender: UISegmentedControl) {
         if select.selectedSegmentIndex == 0 {
             itemlist = Singleton.shared.mymovielist
@@ -62,13 +66,42 @@ class ViewController :UICollectionViewController {
         }
     }
     
+    //열 선택버튼
+    @IBAction func changeviewnum(_ sender: Any) {
+        
+        if selectviewnumber.selectedSegmentIndex == 0 {
+            
+            Singleton.shared.numset = 2
+            self.collectionView.reloadData()
+            print("reloaded1")
+            
+        }
+            
+        else if selectviewnumber.selectedSegmentIndex == 1 {
+            
+            Singleton.shared.numset = 3
+            self.collectionView.reloadData()
+            print("reloaded2")
+            
+        }
+            
+        else if selectviewnumber.selectedSegmentIndex == 2 {
+            
+            Singleton.shared.numset = 4
+            self.collectionView.reloadData()
+            print("reloaded3")
+            
+    }
+
+    }
+    
     //다용도 테스트버튼
     
     @IBAction func testbutton(_ sender: Any) {
 
         
         
-        print("test start")
+        print("Test start")
         Singleton.shared.mymovielist=[]
         Singleton.shared.wanttoseelist = []
         DataManager.delet("mymovielist")
@@ -84,7 +117,7 @@ class ViewController :UICollectionViewController {
 //        print(Singleton.shared.mymovielist.count)
 //        print(Singleton.shared.samplelist.count)
         
-        print("Test")
+        print("Test done")
     }
     
     @IBOutlet weak var searchBarButton: UIBarButtonItem!
@@ -99,10 +132,21 @@ class ViewController :UICollectionViewController {
         
     }
     
+    override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if (kind == UICollectionView.elementKindSectionFooter) {
+        let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CartFooterCollectionReusableView", for: indexPath)
+        // Customize footerView here
+        return footerView
+        } else if (kind == UICollectionView.elementKindSectionHeader) {
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CartHeaderCollectionReusableView", for: indexPath)
+        // Customize headerView here
+        return headerView
+    }
+        fatalError()}
 
     override func viewDidLoad() {
 
-
+        selectviewnumber.selectedSegmentIndex = 1
         //저장된 데이터 로드
         var url = DataManager.getDocumentDirectory().appendingPathComponent("mymovielist", isDirectory: false)
         
@@ -193,7 +237,7 @@ class ViewController :UICollectionViewController {
       return CGSize(width: itemSize, height: itemSize)
     }
     
-    
+   
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if itemlist.count==0 {alert(title: "Add item First!", message: "additemfirst", text: "additemfirst3")
@@ -229,12 +273,18 @@ class ViewController :UICollectionViewController {
 
     
     override func setEditing(_ editing: Bool, animated: Bool) {
+        
+        
+        if itemlist[0].title == "샘플1" {
+            alert(title:"샘플은 삭제할 수 없어요!", message: "어서 영화 포스터를 추가하세요!", text: "샘플은 삭제할수 없습니다.")
+        }
+        else {
         super.setEditing(editing, animated: animated)
         searchBarButton.isEnabled = !editing
         if let indexPaths = collectionView?.indexPathsForVisibleItems{
             for indexPath in indexPaths {
                 if let cell = collectionView?.cellForItem(at: indexPath) as? CollectionViewCell {
-                    cell.isEditing = editing
+                    cell.isEditing = editing }
                 }
             }
         }

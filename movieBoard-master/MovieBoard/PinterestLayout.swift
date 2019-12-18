@@ -21,10 +21,10 @@ class PinterestLayout: UICollectionViewLayout {
     weak var delegate: PinterestLayoutDelegate?
     
     //열 개수
-    private let numberOfColumns = 3
+    var numberOfColumns = Singleton.shared.numset
     
     //cellpadding : 셀안쪽여백
-    private let cellPadding: CGFloat = 3
+    private let cellPadding: CGFloat = 5
     
     //계산해서 필요한 attributes임시저장
     private var cache: [UICollectionViewLayoutAttributes] = []
@@ -47,6 +47,8 @@ class PinterestLayout: UICollectionViewLayout {
 
     //layout시작시
     override func prepare(){
+        
+        let numberOfColumns = Singleton.shared.numset
         
         guard
             cache.isEmpty == true || cache.isEmpty == false,
@@ -79,6 +81,8 @@ class PinterestLayout: UICollectionViewLayout {
             yOffset[column] = yOffset[column] + height
             
             column = column < (numberOfColumns - 1) ? (column + 1) : 0
+            
+            print(numberOfColumns)
         }
     }
     override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {

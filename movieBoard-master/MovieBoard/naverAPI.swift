@@ -39,9 +39,7 @@ class naverAPI {
                       completion(self.MovieList, self.errorMessage)
                     }
                 }
-            } catch let error as NSError {
-                print(error)
-            }
+            } 
         }
             
             
