@@ -9,14 +9,13 @@
 import Foundation
 import UIKit
 import CoreData
-
-
     
     
 
 class SearchMovie: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    
     lazy var tapRecognizer: UITapGestureRecognizer = {
        var recognizer = UITapGestureRecognizer(target:self, action: #selector(dismissKeyboard))
        return recognizer
@@ -92,7 +91,7 @@ extension SearchMovie: UITableViewDelegate, UITableViewDataSource {
         
         return cell!
     }
-
+    
 }
 
 
