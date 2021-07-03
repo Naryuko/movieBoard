@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		048FBBC22690169E0087045F /* movify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048FBBC12690169E0087045F /* movify.swift */; };
 		04BE9182268A005A0033DA52 /* MovieBoard_remasterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE9181268A005A0033DA52 /* MovieBoard_remasterApp.swift */; };
 		04BE9184268A005A0033DA52 /* MovieBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BE9183268A005A0033DA52 /* MovieBoardView.swift */; };
 		04BE9186268A005B0033DA52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04BE9185268A005B0033DA52 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		048FBBC12690169E0087045F /* movify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = movify.swift; sourceTree = "<group>"; };
 		04BE917E268A005A0033DA52 /* MovieBoard_remaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieBoard_remaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04BE9181268A005A0033DA52 /* MovieBoard_remasterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieBoard_remasterApp.swift; sourceTree = "<group>"; };
 		04BE9183268A005A0033DA52 /* MovieBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieBoardView.swift; sourceTree = "<group>"; };
@@ -45,6 +47,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		048FBBBE269016470087045F /* model */ = {
+			isa = PBXGroup;
+			children = (
+				04BE9194268A02530033DA52 /* MovieBoardModel.swift */,
+				04BE9190268A00690033DA52 /* MovieList.swift */,
+				04BE9198268A02F10033DA52 /* Singleton.swift */,
+				04BE919A268A07190033DA52 /* StaticFunction.swift */,
+				04BE9192268A00970033DA52 /* NaverAPI.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		048FBBBF2690165E0087045F /* view */ = {
+			isa = PBXGroup;
+			children = (
+				04BE9183268A005A0033DA52 /* MovieBoardView.swift */,
+				048FBBC12690169E0087045F /* movify.swift */,
+			);
+			name = view;
+			sourceTree = "<group>";
+		};
+		048FBBC0269016770087045F /* vm */ = {
+			isa = PBXGroup;
+			children = (
+				04BE9196268A02D20033DA52 /* MovieBoard.swift */,
+			);
+			path = vm;
+			sourceTree = "<group>";
+		};
 		04BE9175268A005A0033DA52 = {
 			isa = PBXGroup;
 			children = (
@@ -64,14 +95,10 @@
 		04BE9180268A005A0033DA52 /* MovieBoard_remaster */ = {
 			isa = PBXGroup;
 			children = (
+				048FBBC0269016770087045F /* vm */,
+				048FBBBF2690165E0087045F /* view */,
+				048FBBBE269016470087045F /* model */,
 				04BE9181268A005A0033DA52 /* MovieBoard_remasterApp.swift */,
-				04BE9183268A005A0033DA52 /* MovieBoardView.swift */,
-				04BE9196268A02D20033DA52 /* MovieBoard.swift */,
-				04BE9190268A00690033DA52 /* MovieList.swift */,
-				04BE9192268A00970033DA52 /* NaverAPI.swift */,
-				04BE9194268A02530033DA52 /* MovieBoardModel.swift */,
-				04BE9198268A02F10033DA52 /* Singleton.swift */,
-				04BE919A268A07190033DA52 /* StaticFunction.swift */,
 				04BE9185268A005B0033DA52 /* Assets.xcassets */,
 				04BE918A268A005B0033DA52 /* Info.plist */,
 				04BE9187268A005B0033DA52 /* Preview Content */,
@@ -156,6 +183,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				048FBBC22690169E0087045F /* movify.swift in Sources */,
 				04BE9191268A00690033DA52 /* MovieList.swift in Sources */,
 				04BE9199268A02F10033DA52 /* Singleton.swift in Sources */,
 				04BE9184268A005A0033DA52 /* MovieBoardView.swift in Sources */,

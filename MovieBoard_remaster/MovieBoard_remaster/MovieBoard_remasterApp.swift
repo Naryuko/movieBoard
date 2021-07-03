@@ -10,9 +10,9 @@ import SwiftUI
 @main
 struct MovieBoard_remasterApp: App {
     let model = MovieBoard()
+    
     var body: some Scene {
         WindowGroup {
-            MovieBoardView(model: model)
-        }
+            MovieBoardView(model: model)        }
     }
 }

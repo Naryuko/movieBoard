@@ -9,6 +9,7 @@ import Foundation
 
 class MovieBoard: ObservableObject {
     @Published var model = MovieBoardModel()
+    
     let naverAPI: NaverAPI
     
     init () {
@@ -25,6 +26,9 @@ class MovieBoard: ObservableObject {
                 self.model.movieList = results
             }
         }
+        print(title)
+        print(model.movieList)
+        print()
     }
     
     

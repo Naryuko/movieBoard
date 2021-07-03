@@ -52,9 +52,9 @@ class NaverAPI {
             let count = totalData.items.count
             
             if count == 0 {
-                print("error")
+                print("error, result is 0")
             } else {
-                for i in (0...count-1) {
+                for i in 0...count-1 {
                     let title = totalData.items[i].title.replacingOccurrences(of: "<b>", with: "").replacingOccurrences(of: "</b>", with: "")
                     let link = totalData.items[i].link
                     let image = totalData.items[i].image
@@ -67,7 +67,9 @@ class NaverAPI {
                 }
             }
         } catch let error as NSError {
+            print("NSERROR")
             print(error)
+            print()
         }
     }
     
